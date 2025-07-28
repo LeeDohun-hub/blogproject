@@ -5,7 +5,13 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
+
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -22,10 +28,28 @@ public class Article {
     @Column(name = "content", nullable = false)
     private String content;
 
+    // 🔹 카테고리 추가
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Category category;
+
+    @CreatedDate
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
     @Builder //빌더 패턴으로 객체 생성
-    public Article(String title, String content) {
+    public Article(String title, String content, Category category) {
         this.title = title;
         this.content = content;
+        this.category = category; // 추가
     }
-
+    public void update(String title, String content, Category category) {
+        this.title = title;
+        this.content = content;
+        this.category = category;
+    }
 }

@@ -1,14 +1,16 @@
 spring:
-  jpa:
-    #전송 쿼리 확인
-  show-sql: true
-  properties:
-    hibernate:
-      format_sql: true
   datasource:
     url: jdbc:h2:mem:testdb
+
+  jpa:
+    show-sql: true      # SQL 쿼리 로깅
+    hibernate:
+      ddl-auto: create  # 테이블 자동 생성
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true  # Hibernate 이후 data.sql 실행
 
   h2:
     console:
       enabled: true
-      #defer-datasource-initialization: true

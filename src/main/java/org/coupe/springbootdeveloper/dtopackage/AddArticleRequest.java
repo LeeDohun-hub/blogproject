@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.coupe.springbootdeveloper.domain.Article;
+import org.coupe.springbootdeveloper.domain.Category;
 
 @NoArgsConstructor //기본생성자 추가
 @AllArgsConstructor //모든 필드 값을 파라미터로 받는 생성자 추가
@@ -11,11 +12,13 @@ import org.coupe.springbootdeveloper.domain.Article;
 public class AddArticleRequest {
     private String title;
     private String content;
+    private Category category; // 추가
 
     public Article toEntity() { //생성자를 사용해 객체 생성
         return Article.builder()
                 .title(title)
                 .content(content)
+                .category(category) // 추가
                 .build();
     }
 }
