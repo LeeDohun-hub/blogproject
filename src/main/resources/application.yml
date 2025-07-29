@@ -1,7 +1,7 @@
 spring:
   datasource:
     url: jdbc:h2:mem:testdb
-
+    username: sa
   jpa:
     show-sql: true      # SQL 쿼리 로깅
     hibernate:
@@ -14,3 +14,7 @@ spring:
   h2:
     console:
       enabled: true
+jwt:
+  issuer: ajufresh@gmail.com
+  secret_key: study-springboot
+
