@@ -1,7 +1,10 @@
-package org.coupe.springbootdeveloper.config.jwt;
+package org.coupe.springbootdeveloper.controller;
 
 
 import io.jsonwebtoken.Jwts;
+import org.coupe.springbootdeveloper.config.jwt.JwtFactory;
+import org.coupe.springbootdeveloper.config.jwt.JwtProperties;
+import org.coupe.springbootdeveloper.config.jwt.TokenProvider;
 import org.coupe.springbootdeveloper.domain.User;
 import org.coupe.springbootdeveloper.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;

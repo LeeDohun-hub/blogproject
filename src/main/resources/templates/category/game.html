@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게임 카테고리</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<div class="container mt-5">
+    <h2>게임 카테고리 페이지</h2>
+    <div th:each="item : ${articles}">
+        <h5 th:text="${item.title}"></h5>
+        <p th:text="${item.content}"></p>
+    </div>
+</div>
+</body>
+</html>

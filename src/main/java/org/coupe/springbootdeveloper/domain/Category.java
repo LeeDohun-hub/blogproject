@@ -2,10 +2,10 @@ package org.coupe.springbootdeveloper.domain;
 
 public enum Category {
     GAME("게임"),
-    PROGRAMMING("개발"),
+    DEV("개발"),
     SPORTS("운동"),
-    READING("독서"),
-    MEMO("메모");
+    BOOK("독서"),
+    ETC("기타");
 
     private final String label;
 

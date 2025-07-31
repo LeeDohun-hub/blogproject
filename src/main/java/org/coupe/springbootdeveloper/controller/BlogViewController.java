@@ -21,7 +21,7 @@ public class BlogViewController {
     // 메인(전체 글)
     @GetMapping("/")
     public String index(Model model) {
-        List<ArticleListViewResponse> articles = blogService.findAll().stream()
+        List<ArticleListViewResponse> articles = blogService.findAll().stream   ()
                 .map(ArticleListViewResponse::new)
                 .toList();
 
@@ -33,20 +33,24 @@ public class BlogViewController {
     // 카테고리별 글 목록
     @GetMapping("/category/{category}")
     public String category(@PathVariable Category category, Model model) {
-        List<ArticleListViewResponse> articles = blogService.findByCategory(category).stream()
+        List<ArticleListViewResponse> articles = blogService.findByCategory(category)
+                .stream()
                 .map(ArticleListViewResponse::new)
                 .toList();
 
         model.addAttribute("articles", articles);
         model.addAttribute("category", category);
         model.addAttribute("categories", Category.values()); // 카테고리 목록 추가
-        return "index";
+        // category 값에 따라 전용 페이지 반환
+        return "category/" + category.name().toLowerCase();
+
     }
 
     @GetMapping("/articles/{id}")
     public String getArticle(@PathVariable Long id, Model model) {
         Article article = blogService.findById(id);
         model.addAttribute("article", new ArticleViewResponse(article));
+        model.addAttribute("categories", Category.values()); // ✅ 카테고리 추가
         return "article";
     }
 

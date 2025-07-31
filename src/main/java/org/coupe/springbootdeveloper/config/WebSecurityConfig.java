@@ -43,6 +43,9 @@ public class WebSecurityConfig {
         return http
                 .authorizeRequests(auth -> auth
                         .requestMatchers(
+                                new AntPathRequestMatcher("/"),
+                                new AntPathRequestMatcher("/category/**"),
+
                                 new AntPathRequestMatcher("/login"),
                                 new AntPathRequestMatcher("/signup"),
                                 new AntPathRequestMatcher("/user")
@@ -50,11 +53,12 @@ public class WebSecurityConfig {
                         .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
-                        .defaultSuccessUrl("/articles")
+                        .defaultSuccessUrl("/")
                 )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/login")
+                        .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")   // 쿠키 삭제 추가
                 )
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
