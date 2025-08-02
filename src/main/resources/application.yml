@@ -1,7 +1,9 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
+    url: jdbc:mysql://localhost:3306/blogdb?serverTimezone=Asia/Seoul&useSSL=false
+    username: root
+    password: '!Lee201204098'
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true      # SQL 쿼리 로깅
     hibernate:
@@ -9,6 +11,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
     defer-datasource-initialization: true  # Hibernate 이후 data.sql 실행
 
   h2:
