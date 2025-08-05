@@ -2,6 +2,7 @@ package org.coupe.springbootdeveloper.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.coupe.springbootdeveloper.domain.Article;
+import org.coupe.springbootdeveloper.domain.Category;
 import org.coupe.springbootdeveloper.dtopackage.AddArticleRequest;
 import org.coupe.springbootdeveloper.dtopackage.UpdateArticleRequest;
 import org.coupe.springbootdeveloper.repository.BlogRepository;
@@ -54,7 +55,7 @@ public void addArticle() throws Exception {
     final String url = "/api/articles";
     final String title = "title";
     final String content = "content";
-    final AddArticleRequest userRequest = new AddArticleRequest(title, content);
+    final AddArticleRequest userRequest = new AddArticleRequest(title, content, Category.DEV);
 
     final String requestBody = objectMapper.writeValueAsString(userRequest);
 
@@ -154,7 +155,7 @@ public void updateArticle() throws Exception {
     final String newTitle = "new title";
     final String newContent = "new content";
     UpdateArticleRequest request = new UpdateArticleRequest(newTitle,
-            newContent);
+            newContent, Category.DEV);
 
     // when
     ResultActions result = mockMvc.perform(put(url, savedArticle.getId())
