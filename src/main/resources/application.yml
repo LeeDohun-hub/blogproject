@@ -1,0 +1,41 @@
+server:
+  port: 5000
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+    defer-datasource-initialization: true
+    username: sa
+  h2:
+    console:
+      enabled: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 44372052511-1gr3ta9ltrq8k1vbukfc3ogdb528fgrn.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: "http://Coupelog-env.eba-uy6mveyu.ap-southeast-2.elasticbeanstalk.com/login/oauth2/code/google"
+
+            scope:
+              - email
+              - profile
+jwt:
+  issuer: ajufresh@gmail.com
+  secret_key: study-springboot
+
+cloud:
+  aws:
+    credentials:
+      access-key: 44372052511-1gr3ta9ltrq8k1vbukfc3ogdb528fgrn.apps.googleusercontent.com
+      secret-key: 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
+    region:
+      static: ap-southeast-2  # 혹은 ap-northeast-2 (서울 리전이면)
+    s3:
+      bucket: coupelog-uploads
